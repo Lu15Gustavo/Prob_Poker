@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Simples - Poker Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #0f5132;
+            color: white;
+        }
+        .test-result {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste do Calculador de Pôquer</h1>
+    <button onclick="runQuickTest()">Executar Teste Rápido</button>
+    <button onclick="testHandEvaluations()">Testar Avaliação de Mãos</button>
+    <button onclick="testMonteCarlo()">Testar Monte Carlo</button>
+    
+    <div id="results"></div>
+
+    <script src="script.js"></script>
+    <script>
+        function runQuickTest() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<div class="test-result"><h3>Executando testes...</h3></div>';
+            
+            console.log('=== TESTE RÁPIDO ===');
+            
+            // Teste básico de criação de cartas
+            const card1 = new Card('hearts', 14);
+            const card2 = new Card('spades', 14);
+            
+            console.log('Cartas criadas:', card1, card2);
+            
+            // Teste de avaliação de mão simples
+            const testHand = [card1, card2];
+            const evaluation = evaluateHandSimple(testHand);
+            
+            console.log('Avaliação de AA:', evaluation);
+            
+            results.innerHTML += `
+                <div class="test-result">
+                    <h3>Teste de Criação de Cartas</h3>
+                    <p>✅ Cartas criadas com sucesso</p>
+                    <p>Carta 1: ${card1.suit} ${card1.value}</p>
+                    <p>Carta 2: ${card2.suit} ${card2.value}</p>
+                </div>
+                <div class="test-result">
+                    <h3>Teste de Avaliação de Mão</h3>
+                    <p>✅ Avaliação funcionando</p>
+                    <p>AA avaliado como: ${evaluation.name}</p>
+                    <p>Valor: ${evaluation.value}</p>
+                </div>
+            `;
+        }
+        
+        function testHandEvaluations() {
+            const results = document.getElementById('results');
+            
+            console.log('=== TESTE DE AVALIAÇÃO DE MÃOS ===');
+            
+            // Teste Royal Flush
+            const royalFlush = [
+                new Card('spades', 14), new Card('spades', 13), new Card('spades', 12),
+                new Card('spades', 11), new Card('spades', 10)
+            ];
+            const rfEval = evaluateHandSimple(royalFlush);
+            
+            // Teste Par de Ases
+            const pairAces = [
+                new Card('hearts', 14), new Card('spades', 14),
+                new Card('clubs', 7), new Card('diamonds', 5), new Card('hearts', 2)
+            ];
+            const paEval = evaluateHandSimple(pairAces);
+            
+            // Teste Full House
+            const fullHouse = [
+                new Card('hearts', 14), new Card('spades', 14), new Card('clubs', 14),
+                new Card('diamonds', 13), new Card('hearts', 13)
+            ];
+            const fhEval = evaluateHandSimple(fullHouse);
+            
+            results.innerHTML += `
+                <div class="test-result">
+                    <h3>Avaliações de Mãos</h3>
+                    <p>Royal Flush: ${rfEval.name} (${rfEval.value})</p>
+                    <p>Par de Ases: ${paEval.name} (${paEval.value})</p>
+                    <p>Full House AAA-KK: ${fhEval.name} (${fhEval.value})</p>
+                    <p>✅ Royal Flush > Full House > Par: ${rfEval.value > fhEval.value && fhEval.value > paEval.value}</p>
+                </div>
+            `;
+            
+            console.log('Royal Flush:', rfEval);
+            console.log('Par de Ases:', paEval);
+            console.log('Full House:', fhEval);
+        }
+        
+        function testMonteCarlo() {
+            const results = document.getElementById('results');
+            results.innerHTML += '<div class="test-result"><h3>Executando Monte Carlo (pode levar alguns segundos)...</h3></div>';
+            
+            console.log('=== TESTE MONTE CARLO ===');
+            
+            // Simula AA vs KK
+            const player1Cards = [new Card('hearts', 14), new Card('spades', 14)];
+            const player2Cards = [new Card('clubs', 13), new Card('diamonds', 13)];
+            
+            // Simula com menos iterações para ser mais rápido
+            const testResults = runMonteCarloSimulation(2000, [
+                {cards: player1Cards}, 
+                {cards: player2Cards}
+            ], []);
+            
+            const p1Win = testResults[0];
+            const p2Win = testResults[1];
+            
+            results.innerHTML += `
+                <div class="test-result">
+                    <h3>Monte Carlo AA vs KK (2000 simulações)</h3>
+                    <p>AA: ${p1Win.toFixed(1)}% (esperado ~81%)</p>
+                    <p>KK: ${p2Win.toFixed(1)}% (esperado ~19%)</p>
+                    <p>Diferença da expectativa: ${Math.abs(p1Win - 81).toFixed(1)}%</p>
+                    <p>✅ Teste ${Math.abs(p1Win - 81) < 5 ? 'PASSOU' : 'FALHOU'}</p>
+                </div>
+            `;
+            
+            console.log('Resultado Monte Carlo:', testResults);
+        }
+    </script>
+</body>
+</html>

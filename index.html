@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Probabilidades de Poker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Probabilidades de Poker</h1>
+        
+        <!-- Mesa de Poker Circular -->
+        <div class="poker-table-container">
+            <div class="poker-table">
+                <!-- Cartas Comunitárias no Centro -->
+                <div class="community-cards-center">
+                    <div class="pot-info">
+                        <div class="pot-amount">Pote: R$ 0</div>
+                    </div>
+                    <div class="community-cards">
+                        <div class="card-slot community-card" data-position="flop1">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                        <div class="card-slot community-card" data-position="flop2">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                        <div class="card-slot community-card" data-position="flop3">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                        <div class="card-slot community-card" data-position="turn">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                        <div class="card-slot community-card" data-position="river">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jogadores ao Redor da Mesa -->
+                <!-- Jogador 1 (Você) - Posição Inferior -->
+                <div class="player-seat seat-1" data-player="0">
+                    <div class="player-info">
+                        <div class="player-avatar">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNGRkQ3MDAiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0xMiAxMkM4LjEzIDEyIDUgMTUuMTMgNSAxOVYyMUgxOVYxOUMxOSAxNS4xMyAxNS44NyAxMiAxMiAxMloiIGZpbGw9IiMzMzMiLz4KPGNpcmNsZSBjeD0iMTIiIGN5PSI4IiByPSI0IiBmaWxsPSIjMzMzIi8+Cjwvc3ZnPgo8L3N2Zz4K" alt="Você">
+                        </div>
+                        <div class="player-details">
+                            <div class="player-name">Você</div>
+                            <div class="player-chips">R$ 2.500</div>
+                            <div class="win-probability">65.2%</div>
+                        </div>
+                    </div>
+                    <div class="player-cards">
+                        <div class="card-slot" data-player="0" data-card="0">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                        <div class="card-slot" data-player="0" data-card="1">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jogador 2 - Posição Inferior Esquerda -->
+                <div class="player-seat seat-2" data-player="1">
+                    <div class="player-info">
+                        <div class="player-avatar">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM0Qzc2QjciLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0xMiAxMkM4LjEzIDEyIDUgMTUuMTMgNSAxOVYyMUgxOVYxOUMxOSAxNS4xMyAxNS44NyAxMiAxMiAxMloiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPgo=" alt="Jogador 2">
+                        </div>
+                        <div class="player-details">
+                            <div class="player-name">Jogador 2</div>
+                            <div class="player-chips">R$ 1.800</div>
+                            <div class="win-probability">--</div>
+                        </div>
+                    </div>
+                    <div class="player-cards">
+                        <div class="card-slot" data-player="1" data-card="0">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                        <div class="card-slot" data-player="1" data-card="1">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jogador 3 - Posição Esquerda -->
+                <div class="player-seat seat-3" data-player="2">
+                    <div class="player-info">
+                        <div class="player-avatar">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM5QzI2QjAiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0xMiAxMkM4LjEzIDEyIDUgMTUuMTMgNSAxOVYyMUgxOVYxOUMxOSAxNS4xMyAxNS44NyAxMiAxMiAxMloiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPgo=" alt="Jogador 3">
+                        </div>
+                        <div class="player-details">
+                            <div class="player-name">Jogador 3</div>
+                            <div class="player-chips">R$ 3.200</div>
+                            <div class="win-probability">--</div>
+                        </div>
+                    </div>
+                    <div class="player-cards">
+                        <div class="card-slot" data-player="2" data-card="0">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                        <div class="card-slot" data-player="2" data-card="1">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jogador 4 - Posição Superior Esquerda -->
+                <div class="player-seat seat-4" data-player="3">
+                    <div class="player-info">
+                        <div class="player-avatar">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNGRjU3MjIiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0xMiAxMkM4LjEzIDEyIDUgMTUuMTMgNSAxOVYyMUgxOVYxOUMxOSAxNS4xMyAxNS44NyAxMiAxMiAxMloiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPgo=" alt="Jogador 4">
+                        </div>
+                        <div class="player-details">
+                            <div class="player-name">Jogador 4</div>
+                            <div class="player-chips">R$ 1.500</div>
+                            <div class="win-probability">--</div>
+                        </div>
+                    </div>
+                    <div class="player-cards">
+                        <div class="card-slot" data-player="3" data-card="0">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                        <div class="card-slot" data-player="3" data-card="1">
+                            <div class="card-placeholder">?</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Modal de Seleção de Cartas -->
+        <div id="cardModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Selecione uma Carta</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="all-cards-grid">
+                        <!-- Copas (Hearts) -->
+                        <div class="suit-section">
+                            <h4>♥️ Copas</h4>
+                            <div class="cards-row">
+                                <div class="card-option red" data-rank="A" data-suit="hearts">A♥️</div>
+                                <div class="card-option red" data-rank="K" data-suit="hearts">K♥️</div>
+                                <div class="card-option red" data-rank="Q" data-suit="hearts">Q♥️</div>
+                                <div class="card-option red" data-rank="J" data-suit="hearts">J♥️</div>
+                                <div class="card-option red" data-rank="10" data-suit="hearts">10♥️</div>
+                                <div class="card-option red" data-rank="9" data-suit="hearts">9♥️</div>
+                                <div class="card-option red" data-rank="8" data-suit="hearts">8♥️</div>
+                                <div class="card-option red" data-rank="7" data-suit="hearts">7♥️</div>
+                                <div class="card-option red" data-rank="6" data-suit="hearts">6♥️</div>
+                                <div class="card-option red" data-rank="5" data-suit="hearts">5♥️</div>
+                                <div class="card-option red" data-rank="4" data-suit="hearts">4♥️</div>
+                                <div class="card-option red" data-rank="3" data-suit="hearts">3♥️</div>
+                                <div class="card-option red" data-rank="2" data-suit="hearts">2♥️</div>
+                            </div>
+                        </div>
+
+                        <!-- Ouros (Diamonds) -->
+                        <div class="suit-section">
+                            <h4>♦️ Ouros</h4>
+                            <div class="cards-row">
+                                <div class="card-option red" data-rank="A" data-suit="diamonds">A♦️</div>
+                                <div class="card-option red" data-rank="K" data-suit="diamonds">K♦️</div>
+                                <div class="card-option red" data-rank="Q" data-suit="diamonds">Q♦️</div>
+                                <div class="card-option red" data-rank="J" data-suit="diamonds">J♦️</div>
+                                <div class="card-option red" data-rank="10" data-suit="diamonds">10♦️</div>
+                                <div class="card-option red" data-rank="9" data-suit="diamonds">9♦️</div>
+                                <div class="card-option red" data-rank="8" data-suit="diamonds">8♦️</div>
+                                <div class="card-option red" data-rank="7" data-suit="diamonds">7♦️</div>
+                                <div class="card-option red" data-rank="6" data-suit="diamonds">6♦️</div>
+                                <div class="card-option red" data-rank="5" data-suit="diamonds">5♦️</div>
+                                <div class="card-option red" data-rank="4" data-suit="diamonds">4♦️</div>
+                                <div class="card-option red" data-rank="3" data-suit="diamonds">3♦️</div>
+                                <div class="card-option red" data-rank="2" data-suit="diamonds">2♦️</div>
+                            </div>
+                        </div>
+
+                        <!-- Paus (Clubs) -->
+                        <div class="suit-section">
+                            <h4>♣️ Paus</h4>
+                            <div class="cards-row">
+                                <div class="card-option black" data-rank="A" data-suit="clubs">A♣️</div>
+                                <div class="card-option black" data-rank="K" data-suit="clubs">K♣️</div>
+                                <div class="card-option black" data-rank="Q" data-suit="clubs">Q♣️</div>
+                                <div class="card-option black" data-rank="J" data-suit="clubs">J♣️</div>
+                                <div class="card-option black" data-rank="10" data-suit="clubs">10♣️</div>
+                                <div class="card-option black" data-rank="9" data-suit="clubs">9♣️</div>
+                                <div class="card-option black" data-rank="8" data-suit="clubs">8♣️</div>
+                                <div class="card-option black" data-rank="7" data-suit="clubs">7♣️</div>
+                                <div class="card-option black" data-rank="6" data-suit="clubs">6♣️</div>
+                                <div class="card-option black" data-rank="5" data-suit="clubs">5♣️</div>
+                                <div class="card-option black" data-rank="4" data-suit="clubs">4♣️</div>
+                                <div class="card-option black" data-rank="3" data-suit="clubs">3♣️</div>
+                                <div class="card-option black" data-rank="2" data-suit="clubs">2♣️</div>
+                            </div>
+                        </div>
+
+                        <!-- Espadas (Spades) -->
+                        <div class="suit-section">
+                            <h4>♠️ Espadas</h4>
+                            <div class="cards-row">
+                                <div class="card-option black" data-rank="A" data-suit="spades">A♠️</div>
+                                <div class="card-option black" data-rank="K" data-suit="spades">K♠️</div>
+                                <div class="card-option black" data-rank="Q" data-suit="spades">Q♠️</div>
+                                <div class="card-option black" data-rank="J" data-suit="spades">J♠️</div>
+                                <div class="card-option black" data-rank="10" data-suit="spades">10♠️</div>
+                                <div class="card-option black" data-rank="9" data-suit="spades">9♠️</div>
+                                <div class="card-option black" data-rank="8" data-suit="spades">8♠️</div>
+                                <div class="card-option black" data-rank="7" data-suit="spades">7♠️</div>
+                                <div class="card-option black" data-rank="6" data-suit="spades">6♠️</div>
+                                <div class="card-option black" data-rank="5" data-suit="spades">5♠️</div>
+                                <div class="card-option black" data-rank="4" data-suit="spades">4♠️</div>
+                                <div class="card-option black" data-rank="3" data-suit="spades">3♠️</div>
+                                <div class="card-option black" data-rank="2" data-suit="spades">2♠️</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões de Controle -->
+        <div class="controls">
+            <button id="clearAll">Limpar Tudo</button>
+            <button id="randomHand">Mão Aleatória</button>
+            <button id="dealFlop">Deal Flop</button>
+            <button id="dealTurn">Deal Turn</button>
+            <button id="dealRiver">Deal River</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
