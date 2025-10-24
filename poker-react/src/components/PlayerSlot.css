@@ -1,0 +1,245 @@
+.player-slot {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  padding: 15px;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.player-empty {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+}
+
+.add-player-button {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.add-player-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.5);
+}
+
+.add-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.player-active {
+  background: linear-gradient(135deg, rgba(30, 30, 50, 0.95) 0%, rgba(20, 20, 40, 0.95) 100%);
+  border: 2px solid #4CAF50;
+}
+
+.remove-player-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #f44336;
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.remove-player-button:hover {
+  background: #d32f2f;
+  transform: scale(1.1);
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.player-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4CAF50;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.player-cards {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-wrapper {
+  position: relative;
+}
+
+.poker-card {
+  width: 60px;
+  height: 84px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.poker-card:hover {
+  transform: translateY(-5px);
+}
+
+.poker-card.red {
+  color: #e74c3c;
+}
+
+.poker-card.black {
+  color: #2c3e50;
+}
+
+.card-value {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.card-suit {
+  font-size: 28px;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.card-remove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #f44336;
+  color: white;
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.poker-card:hover .card-remove {
+  display: flex;
+}
+
+.card-remove:hover {
+  background: #d32f2f;
+}
+
+.add-card-button {
+  width: 60px;
+  height: 84px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-card-button:hover {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4CAF50;
+  transform: scale(1.05);
+}
+
+.player-probability {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.probability-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4CAF50;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.calculating {
+  font-size: 14px;
+  color: #FFC107;
+  font-style: italic;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 768px) {
+  .player-slot {
+    min-width: 160px;
+    padding: 10px;
+  }
+  
+  .poker-card {
+    width: 50px;
+    height: 70px;
+  }
+  
+  .card-value {
+    font-size: 20px;
+  }
+  
+  .card-suit {
+    font-size: 24px;
+  }
+  
+  .add-card-button {
+    width: 50px;
+    height: 70px;
+  }
+  
+  .probability-value {
+    font-size: 20px;
+  }
+}

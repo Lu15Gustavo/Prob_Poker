@@ -1,0 +1,112 @@
+.community-cards {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 193, 7, 0.3);
+}
+
+.community-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFC107;
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.community-cards-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.community-card-wrapper {
+  position: relative;
+}
+
+.community-card-empty {
+  width: 70px;
+  height: 98px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 16px;
+}
+
+.community-card-empty:hover {
+  background: rgba(255, 193, 7, 0.1);
+  border-color: #FFC107;
+  transform: translateY(-5px);
+}
+
+.community-card-empty:hover .card-shadow {
+  color: #FFC107;
+}
+
+.card-shadow {
+  font-size: 36px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.community-card-wrapper .poker-card {
+  width: 70px;
+  height: 98px;
+  border: 2px solid rgba(255, 193, 7, 0.3);
+}
+
+.community-card-wrapper .poker-card:hover {
+  border-color: #FFC107;
+  box-shadow: 0 6px 12px rgba(255, 193, 7, 0.4);
+}
+
+.community-card-wrapper .poker-card .card-value {
+  font-size: 28px;
+}
+
+.community-card-wrapper .poker-card .card-suit {
+  font-size: 32px;
+}
+
+@media (max-width: 768px) {
+  .community-cards {
+    padding: 15px;
+  }
+  
+  .community-label {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .community-cards-row {
+    gap: 6px;
+  }
+  
+  .community-card-empty,
+  .community-card-wrapper .poker-card {
+    width: 50px;
+    height: 70px;
+  }
+  
+  .community-card-wrapper .poker-card .card-value {
+    font-size: 20px;
+  }
+  
+  .community-card-wrapper .poker-card .card-suit {
+    font-size: 24px;
+  }
+  
+  .card-shadow {
+    font-size: 24px;
+  }
+}
