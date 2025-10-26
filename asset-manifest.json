@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Prob_Poker/static/css/main.9929e144.css",
+    "main.css": "/Prob_Poker/static/css/main.e77ca2dd.css",
     "main.js": "/Prob_Poker/static/js/main.6b9cdae6.js",
     "index.html": "/Prob_Poker/index.html",
-    "main.9929e144.css.map": "/Prob_Poker/static/css/main.9929e144.css.map",
+    "main.e77ca2dd.css.map": "/Prob_Poker/static/css/main.e77ca2dd.css.map",
     "main.6b9cdae6.js.map": "/Prob_Poker/static/js/main.6b9cdae6.js.map"
   },
   "entrypoints": [
-    "static/css/main.9929e144.css",
+    "static/css/main.e77ca2dd.css",
     "static/js/main.6b9cdae6.js"
   ]
 }
