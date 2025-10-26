@@ -1,7 +1,7 @@
 .player-slot {
   background: rgba(0, 0, 0, 0.7);
   border-radius: 15px;
-  padding: 15px;
+  padding: 0px;
   min-width: 200px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
@@ -15,7 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 120px;
+  min-height: 80px;
 }
 
 .add-player-button {
@@ -23,19 +23,19 @@
   border: none;
   color: white;
   padding: 15px 25px;
-  border-radius: 10px;
+  border-radius: 100px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  transition: all 0.3s ease;
+  transition: all 1.3s ease;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .add-player-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
   box-shadow: 0 6px 12px rgba(76, 175, 80, 0.5);
 }
 
@@ -104,7 +104,7 @@
   width: 60px;
   height: 84px;
   background: white;
-  border-radius: 8px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,7 +112,7 @@
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 1.2s ease;
 }
 
 .poker-card:hover {
