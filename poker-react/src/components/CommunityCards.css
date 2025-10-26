@@ -80,33 +80,80 @@
 
 @media (max-width: 768px) {
   .community-cards {
-    padding: 15px;
+    padding: 12px;
   }
   
   .community-label {
-    font-size: 12px;
-    margin-bottom: 10px;
+    font-size: 11px;
+    margin-bottom: 8px;
   }
   
   .community-cards-row {
-    gap: 6px;
+    gap: 5px;
   }
   
   .community-card-empty,
   .community-card-wrapper .poker-card {
-    width: 50px;
-    height: 70px;
+    width: 45px;
+    height: 62px;
   }
   
   .community-card-wrapper .poker-card .card-value {
-    font-size: 20px;
+    font-size: 18px;
+    top: 3px;
+    left: 3px;
   }
   
   .community-card-wrapper .poker-card .card-suit {
-    font-size: 24px;
+    font-size: 20px;
   }
   
   .card-shadow {
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  .community-card-empty {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .community-cards {
+    padding: 8px;
+  }
+  
+  .community-label {
+    font-size: 9px;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  
+  .community-cards-row {
+    gap: 3px;
+  }
+  
+  .community-card-empty,
+  .community-card-wrapper .poker-card {
+    width: 35px;
+    height: 48px;
+    border-radius: 6px;
+  }
+  
+  .community-card-wrapper .poker-card .card-value {
+    font-size: 14px;
+    top: 2px;
+    left: 2px;
+  }
+  
+  .community-card-wrapper .poker-card .card-suit {
+    font-size: 16px;
+  }
+  
+  .card-shadow {
+    font-size: 16px;
+  }
+
+  .community-card-empty {
+    font-size: 10px;
   }
 }

@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -66,6 +65,27 @@ body {
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
+  position: relative;
+}
+
+.footer-signature {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  font-style: italic;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer-signature:hover {
+  color: #4CAF50;
+  transform: scale(1.1);
+  text-shadow: 0 2px 8px rgba(76, 175, 80, 0.6);
 }
 
 .poker-table {
@@ -99,17 +119,17 @@ body {
 }
 
 .player-top-left {
-  top: 20px;
-  left: 80px;
+  top: 15px;
+  left: 25px;
 }
 
 .player-top-right {
-  top: 20px;
-  right: 80px;
+  top: 15px;
+  right: 25px;
 }
 
 .player-bottom {
-  bottom: 30px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -128,38 +148,107 @@ body {
   }
   
   .player-top-left {
-    left: 50px;
-  }
-  
-  .player-top-right {
-    right: 50px;
-  }
-}
-
-@media (max-width: 768px) {
-  .app-header h1 {
-    font-size: 22px;
-  }
-  
-  .poker-table {
-    width: 90vw;
-    height: 60vw;
-    max-width: 600px;
-    max-height: 400px;
-    transform: perspective(800px) rotateX(10deg);
-  }
-  
-  .player-top-left {
     left: 30px;
-    top: 10px;
   }
   
   .player-top-right {
     right: 30px;
-    top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 8px 5px;
+    gap: 6px;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .app-header h1 {
+    font-size: 14px;
+    min-width: auto;
+    width: 100%;
+    line-height: 1.2;
+    margin: 0;
+  }
+  
+  .reset-button {
+    padding: 6px 14px;
+    font-size: 11px;
+  }
+
+  .poker-table-container {
+    padding: 50px 5px 10px 5px;
+    margin-top: 0;
+    position: relative;
+  }
+  
+  .poker-table {
+    width: 95vw;
+    height: 65vw;
+    max-width: 500px;
+    max-height: 350px;
+    transform: perspective(600px) rotateX(8deg);
+    border: 10px solid #8B4513;
+  }
+  
+  .player-top-left {
+    left: 5px;
+    top: -15px;
+  }
+  
+  .player-top-right {
+    right: 5px;
+    top: -15px;
   }
   
   .player-bottom {
-    bottom: 15px;
+    bottom: -15px;
+  }
+
+  .footer-signature {
+    font-size: 11px;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 16px;
+  }
+
+  .reset-button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .poker-table {
+    width: 98vw;
+    height: 140vw;
+    border: 8px solid #8B4513;
+  }
+
+  .player-top-left,
+  .player-top-right {
+    top: -20px;
+  }
+
+  .player-top-left {
+    left: 2px;
+  }
+
+  .player-top-right {
+    right: 2px;
+  }
+
+  .player-bottom {
+    bottom: -20px;
+  }
+
+  .footer-signature {
+    font-size: 10px;
+    bottom: 5px;
+    left: 5px;
   }
 }

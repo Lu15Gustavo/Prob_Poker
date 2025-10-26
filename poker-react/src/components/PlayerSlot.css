@@ -217,29 +217,152 @@
 
 @media (max-width: 768px) {
   .player-slot {
-    min-width: 160px;
-    padding: 10px;
+    min-width: 140px;
+    padding: 8px;
+  }
+
+  .add-player-button {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  .add-icon {
+    font-size: 18px;
+  }
+
+  .remove-player-button {
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+  }
+
+  .player-label {
+    font-size: 13px;
+  }
+
+  .player-cards {
+    gap: 5px;
   }
   
   .poker-card {
-    width: 50px;
-    height: 70px;
+    width: 45px;
+    height: 62px;
   }
   
   .card-value {
-    font-size: 20px;
+    font-size: 18px;
+    top: 3px;
+    left: 3px;
   }
   
   .card-suit {
-    font-size: 24px;
+    font-size: 20px;
   }
   
   .add-card-button {
-    width: 50px;
-    height: 70px;
+    width: 45px;
+    height: 62px;
+    font-size: 22px;
+  }
+
+  .remove-card-button {
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    top: -6px;
+    right: -6px;
   }
   
+  .probability-display {
+    margin-top: 8px;
+  }
+
+  .probability-label {
+    font-size: 11px;
+  }
+
   .probability-value {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .calculating {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .player-slot {
+    min-width: 110px;
+    padding: 0px;
+  }
+
+  .add-player-button {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+
+  .add-icon {
+    font-size: 16px;
+  }
+
+  .remove-player-button {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    top: 3px;
+    right: 3px;
+  }
+
+  .player-label {
+    font-size: 11px;
+  }
+
+  .player-cards {
+    gap: 4px;
+  }
+  
+  .poker-card {
+    width: 35px;
+    height: 48px;
+  }
+  
+  .card-value {
+    font-size: 14px;
+    top: 2px;
+    left: 2px;
+  }
+  
+  .card-suit {
+    font-size: 16px;
+  }
+  
+  .add-card-button {
+    width: 35px;
+    height: 48px;
+    font-size: 18px;
+  }
+
+  .remove-card-button {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    top: -5px;
+    right: -5px;
+  }
+
+  .probability-display {
+    margin-top: 6px;
+  }
+
+  .probability-label {
+    font-size: 9px;
+  }
+
+  .probability-value {
+    font-size: 14px;
+  }
+
+  .calculating {
+    font-size: 9px;
   }
 }

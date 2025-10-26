@@ -218,3 +218,110 @@ export function monteCarloSimulation(playerHands, communityCards = [], simulatio
     
     return winPercentages;
 }
+
+/**
+ * Calcula os outs de cada jogador
+ * Retorna: { playerIndex: { outs: number, outsCards: Card[], turnOdds: number, riverOdds: number } }
+ */
+export function calculateOuts(playerHands, communityCards) {
+    if (playerHands.length === 0 || playerHands.some(hand => hand.length !== 2)) {
+        return playerHands.map(() => ({ outs: 0, outsCards: [], turnOdds: 0, riverOdds: 0 }));
+    }
+
+    // Se não há cartas comunitárias ainda, não calculamos outs
+    if (communityCards.length === 0) {
+        return playerHands.map(() => ({ outs: 0, outsCards: [], turnOdds: 0, riverOdds: 0 }));
+    }
+
+    const knownCards = [];
+    playerHands.forEach(hand => knownCards.push(...hand));
+    knownCards.push(...communityCards);
+    
+    const fullDeck = createDeck();
+    const availableDeck = removeKnownCards(fullDeck, knownCards);
+
+    const outsInfo = playerHands.map((playerHand, playerIndex) => {
+        // Avalia a melhor mão atual do jogador
+        const currentCards = [...playerHand, ...communityCards];
+        const currentBestScore = findBestHand(currentCards);
+
+        // Verifica se o jogador está ganhando atualmente
+        let currentlyWinning = true;
+        for (let oppIndex = 0; oppIndex < playerHands.length; oppIndex++) {
+            if (oppIndex === playerIndex) continue;
+            
+            const oppHand = playerHands[oppIndex];
+            const oppCurrentCards = [...oppHand, ...communityCards];
+            const oppCurrentScore = findBestHand(oppCurrentCards);
+            
+            if (oppCurrentScore >= currentBestScore) {
+                currentlyWinning = false;
+                break;
+            }
+        }
+
+        // Se já está ganhando, não precisa de outs
+        if (currentlyWinning) {
+            return {
+                outs: 0,
+                outsCards: [],
+                turnOdds: 0,
+                riverOdds: 0
+            };
+        }
+
+        // Testa cada carta disponível para ver se faz o jogador ganhar
+        const improvingCards = [];
+        
+        availableDeck.forEach(testCard => {
+            // Simula adicionar esta carta ao board
+            const testBoard = [...communityCards, testCard];
+            const testAllCards = [...playerHand, ...testBoard];
+            const newScore = findBestHand(testAllCards);
+
+            // Verifica se esta carta faria o jogador ganhar de TODOS os oponentes
+            let wouldWin = true;
+            
+            for (let oppIndex = 0; oppIndex < playerHands.length; oppIndex++) {
+                if (oppIndex === playerIndex) continue;
+                
+                const oppHand = playerHands[oppIndex];
+                const oppCards = [...oppHand, ...testBoard];
+                const oppScore = findBestHand(oppCards);
+                
+                if (oppScore >= newScore) {
+                    wouldWin = false;
+                    break;
+                }
+            }
+            
+            if (wouldWin) {
+                improvingCards.push(testCard);
+            }
+        });
+
+        const outsCount = improvingCards.length;
+        const cardsToSee = 5 - communityCards.length; // quantas cartas faltam
+        const unknownCards = 52 - knownCards.length;
+
+        // Fórmula: probabilidade de acertar no turn ou river
+        let turnOdds = 0;
+        let riverOdds = 0;
+
+        if (communityCards.length === 3) { // Flop
+            turnOdds = (outsCount / unknownCards) * 100;
+            riverOdds = (1 - Math.pow((unknownCards - outsCount) / unknownCards, 2)) * 100;
+        } else if (communityCards.length === 4) { // Turn
+            riverOdds = (outsCount / unknownCards) * 100;
+        }
+
+        return {
+            outs: outsCount,
+            outsCards: improvingCards,
+            turnOdds: Math.round(turnOdds * 10) / 10,
+            riverOdds: Math.round(riverOdds * 10) / 10
+        };
+    });
+
+    return outsInfo;
+}

@@ -2,6 +2,7 @@
   "name": "poker-probability-calculator",
   "version": "1.0.0",
   "description": "Calculadora de Probabilidades de Poker com Monte Carlo",
+  "homepage": "https://Lu15Gustavo.github.io/Prob_Poker",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
@@ -12,7 +13,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -33,6 +36,7 @@
   },
   "devDependencies": {
     "eslint": "^8.57.1",
+    "gh-pages": "^6.3.0",
     "postcss-selector-parser": "^7.1.0"
   }
 }

@@ -203,24 +203,118 @@
 }
 
 @media (max-width: 768px) {
+  .card-selector-modal {
+    width: 95%;
+    max-height: 85vh;
+    border-radius: 15px;
+  }
+
+  .modal-header {
+    padding: 15px;
+  }
+
   .modal-header h2 {
+    font-size: 18px;
+  }
+
+  .modal-close {
+    width: 35px;
+    height: 35px;
     font-size: 20px;
+  }
+
+  .modal-content {
+    padding: 15px;
+  }
+
+  .suit-group {
+    margin-bottom: 20px;
+  }
+
+  .suit-label {
+    font-size: 15px;
+    padding: 8px;
+    margin-bottom: 12px;
   }
   
   .cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 6px;
+    padding: 8px 0;
   }
   
   .card-rank {
-    font-size: 20px;
+    font-size: 18px;
   }
   
   .card-suit-symbol {
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  .select-card.disabled::after {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-selector-modal {
+    width: 98%;
+    max-height: 80vh;
+    border-radius: 12px;
+  }
+
+  .modal-header {
+    padding: 12px;
+  }
+
+  .modal-header h2 {
+    font-size: 16px;
+  }
+
+  .modal-close {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .modal-content {
+    padding: 12px;
+  }
+
+  .suit-group {
+    margin-bottom: 15px;
+  }
+
+  .suit-label {
+    font-size: 13px;
+    padding: 6px;
+    margin-bottom: 10px;
   }
   
-  .suit-label {
-    font-size: 16px;
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+    gap: 5px;
+    padding: 6px 0;
+  }
+  
+  .card-rank {
+    font-size: 15px;
+  }
+  
+  .card-suit-symbol {
+    font-size: 18px;
+    margin-top: 2px;
+  }
+
+  .select-card {
+    border-radius: 6px;
+  }
+
+  .select-card.disabled::after {
+    font-size: 24px;
+  }
+
+  .card-selector-modal::-webkit-scrollbar {
+    width: 6px;
   }
 }

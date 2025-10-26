@@ -1,0 +1,211 @@
+.outs-display-fixed {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.95) 0%, rgba(21, 101, 192, 0.95) 100%);
+  border: 3px solid #1976D2;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  min-width: 200px;
+  max-width: 280px;
+  backdrop-filter: blur(10px);
+}
+
+.outs-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.outs-player-name {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.outs-count-badge {
+  background: white;
+  color: #1976D2;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 5px 15px;
+  border-radius: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.outs-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  justify-items: center;
+}
+
+.mini-card {
+  background: white;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  width: 36px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.mini-card:hover {
+  transform: scale(1.15);
+  z-index: 10;
+}
+
+.mini-card.red {
+  color: #e74c3c;
+}
+
+.mini-card.black {
+  color: #2c3e50;
+}
+
+.mini-rank {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.mini-suit {
+  font-size: 16px;
+  line-height: 1;
+  margin-top: 3px;
+}
+
+.mini-card-more {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  width: 36px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #1976D2;
+}
+
+/* Responsivo Mobile */
+@media (max-width: 768px) {
+  .outs-display-fixed {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    left: auto;
+    padding: 6px;
+    min-width: 120px;
+    max-width: 160px;
+    border-radius: 6px;
+    border-width: 2px;
+  }
+
+  .outs-header {
+    gap: 2px;
+    margin-bottom: 4px;
+  }
+
+  .outs-player-name {
+    font-size: 9px;
+  }
+
+  .outs-count-badge {
+    font-size: 9px;
+    padding: 2px 8px;
+  }
+
+  .outs-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+
+  .mini-card {
+    width: 26px;
+    height: 35px;
+  }
+
+  .mini-rank {
+    font-size: 10px;
+  }
+
+  .mini-suit {
+    font-size: 12px;
+    margin-top: 1px;
+  }
+
+  .mini-card-more {
+    width: 28px;
+    height: 38px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .outs-display-fixed {
+    top: 95px;
+    right: 5px;
+    left: auto;
+    padding: 8px;
+    min-width: 130px;
+    max-width: 160px;
+    border-radius: 8px;
+    border-width: 2px;
+  }
+
+  .outs-header {
+    gap: 3px;
+    margin-bottom: 8px;
+  }
+
+  .outs-player-name {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .outs-count-badge {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+
+  .outs-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+
+  .mini-card {
+    width: 24px;
+    height: 32px;
+    border-radius: 3px;
+  }
+
+  .mini-rank {
+    font-size: 9px;
+  }
+
+  .mini-suit {
+    font-size: 11px;
+    margin-top: 1px;
+  }
+
+  .mini-card-more {
+    width: 24px;
+    height: 32px;
+    font-size: 8px;
+  }
+}

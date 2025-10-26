@@ -3,7 +3,8 @@ import './App.css';
 import PlayerSlot from './components/PlayerSlot';
 import CommunityCards from './components/CommunityCards';
 import CardSelector from './components/CardSelector';
-import { Card, monteCarloSimulation } from './montecarlo';
+import OutsDisplay from './components/OutsDisplay';
+import { Card, monteCarloSimulation, calculateOuts } from './montecarlo';
 
 function App() {
   const [players, setPlayers] = useState([
@@ -14,6 +15,7 @@ function App() {
   
   const [communityCards, setCommunityCards] = useState([]);
   const [probabilities, setProbabilities] = useState([0, 0, 0]);
+  const [losingPlayerOuts, setLosingPlayerOuts] = useState(null); // { playerIndex, playerName, outs }
   const [isCalculating, setIsCalculating] = useState(false);
   
   const [selectorOpen, setSelectorOpen] = useState(false);
@@ -29,6 +31,7 @@ function App() {
     
     if (activePlayers.length < 2) {
       setProbabilities([0, 0, 0]);
+      setLosingPlayerOuts(null);
       return;
     }
 
@@ -38,7 +41,7 @@ function App() {
     setTimeout(() => {
       try {
         const playerHands = activePlayers.map(p => p.cards);
-        const results = monteCarloSimulation(playerHands, communityCards, 50000);
+        const results = monteCarloSimulation(playerHands, communityCards, 10000);
         
         // Mapeia resultados de volta para as posições originais
         const newProbs = [0, 0, 0];
@@ -51,6 +54,49 @@ function App() {
         });
         
         setProbabilities(newProbs);
+
+        // Calcula os outs APENAS do jogador que está perdendo
+        if (communityCards.length >= 3) {
+          const calculatedOuts = calculateOuts(playerHands, communityCards);
+          
+          // Encontra o jogador com menor probabilidade (perdendo)
+          let losingPlayerIndex = -1;
+          let lowestProb = 100;
+          
+          players.forEach((player, index) => {
+            if (player.active && player.cards.length === 2 && newProbs[index] < lowestProb) {
+              lowestProb = newProbs[index];
+              losingPlayerIndex = index;
+            }
+          });
+
+          // Encontra o índice correto no array de outs calculados
+          let outsIndex = 0;
+          let foundOutsIndex = -1;
+          players.forEach((player, index) => {
+            if (player.active && player.cards.length === 2) {
+              if (index === losingPlayerIndex) {
+                foundOutsIndex = outsIndex;
+              }
+              outsIndex++;
+            }
+          });
+
+          // Define os outs apenas do jogador perdendo
+          if (foundOutsIndex >= 0 && calculatedOuts[foundOutsIndex] && calculatedOuts[foundOutsIndex].outs > 0) {
+            const outsData = {
+              playerIndex: losingPlayerIndex,
+              playerName: `Player ${losingPlayerIndex + 1}`,
+              outs: calculatedOuts[foundOutsIndex]
+            };
+            setLosingPlayerOuts(outsData);
+          } else {
+            setLosingPlayerOuts(null);
+          }
+        } else {
+          setLosingPlayerOuts(null);
+        }
+        
       } catch (error) {
         console.error('Erro ao calcular probabilidades:', error);
       }
@@ -61,6 +107,20 @@ function App() {
   const openCardSelector = (type, index, cardIndex = 0) => {
     setSelectorTarget({ type, index, cardIndex });
     setSelectorOpen(true);
+  };
+
+  const getCardDisplay = (card) => {
+    const ranks = { 11: 'J', 12: 'Q', 13: 'K', 14: 'A' };
+    const rank = ranks[card.value] || card.value;
+    const suitSymbols = {
+      'hearts': '♥',
+      'diamonds': '♦',
+      'clubs': '♣',
+      'spades': '♠'
+    };
+    const suit = suitSymbols[card.suit] || '';
+    const color = (card.suit === 'hearts' || card.suit === 'diamonds') ? 'red' : 'black';
+    return { rank, suit, color };
   };
 
   const selectCard = (suit, value) => {
@@ -133,6 +193,15 @@ function App() {
         </button>
       </header>
 
+      {/* Display de Outs no canto superior direito */}
+      {losingPlayerOuts && (
+        <OutsDisplay 
+          playerName={losingPlayerOuts.playerName}
+          outs={losingPlayerOuts.outs}
+          getCardDisplay={getCardDisplay}
+        />
+      )}
+
       <div className="poker-table-container">
         <div className="poker-table">
           {/* Jogador 2 (topo esquerda) */}
@@ -192,6 +261,15 @@ function App() {
           usedCards={[...players.flatMap(p => p.cards), ...communityCards]}
         />
       )}
+
+      <a 
+        href="https://github.com/Lu15Gustavo/Prob_Poker" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="footer-signature"
+      >
+        by Luis Gustavo
+      </a>
     </div>
   );
 }
