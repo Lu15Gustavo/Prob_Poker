@@ -37,13 +37,12 @@ function App() {
 
     setIsCalculating(true);
     
-    // Simula delay para não travar a UI
+    // Pause pra carregar a UI
     setTimeout(() => {
       try {
         const playerHands = activePlayers.map(p => p.cards);
         const results = monteCarloSimulation(playerHands, communityCards, 10000);
         
-        // Mapeia resultados de volta para as posições originais
         const newProbs = [0, 0, 0];
         let resultIndex = 0;
         players.forEach((player, index) => {
